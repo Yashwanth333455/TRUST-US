@@ -1,0 +1,1251 @@
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap');
+/* ================================================================
+   TRUST US — style.css
+   Author: Trust Us Team
+   
+   HOW CSS WORKS (for students):
+   - A CSS "rule" looks like:  selector { property: value; }
+   - The "selector" picks which HTML element to style.
+   - The "property" is what you want to change (color, size, etc.)
+   - The "value" is what you set it to.
+   
+   TABLE OF CONTENTS:
+   1. CSS Custom Properties (Variables)
+   2. CSS Reset & Base Styles
+   3. Navbar
+   4. Hamburger Menu (Mobile)
+   5. Hero Section
+   6. Values / Slider Section
+   7. Services Section
+   8. Info / About Section
+   9. Footer
+   10. Utility Classes
+   11. Animations & Keyframes
+   12. Media Queries (Responsive Design)
+================================================================ */
+
+
+/* ================================================================
+   1. CSS CUSTOM PROPERTIES (VARIABLES)
+   Define reusable values here. Change one variable → updates everywhere!
+   Syntax:  --variable-name: value;
+   Usage:   color: var(--variable-name);
+================================================================ */
+:root {
+    /* --- Color Palette --- */
+    --blue-900: #0a1628;
+    /* Darkest navy — used for text */
+    --blue-800: #0d2044;
+    /* Dark navy */
+    --blue-700: #0f2d63;
+    /* Deep trust blue */
+    --blue-600: #1a3d7c;
+    /* Primary brand blue */
+    --blue-500: #1e4d99;
+    /* Mid blue */
+    --blue-400: #2563c4;
+    /* Accent blue (buttons) */
+    --blue-300: #3b82f6;
+    /* Bright blue (hover) */
+    --blue-100: #dbeafe;
+    /* Very light blue (backgrounds) */
+    --blue-50: #eff6ff;
+    /* Near-white blue tint */
+
+    --white: #ffffff;
+    --off-white: #f8faff;
+    /* Slight blue tint white for sections */
+    --gray-200: #e2e8f0;
+    /* Light borders */
+    --gray-400: #94a3b8;
+    /* Muted text */
+    --gray-600: #475569;
+    /* Body text */
+
+    --gold: #f59e0b;
+    /* Accent gold for highlights */
+    --gold-light: #fef3c7;
+
+    /* --- Typography --- */
+    --font-display: 'Playfair Display', Georgia, serif;
+    /* For headings */
+    --font-body: 'DM Sans', Arial, sans-serif;
+    /* For body text */
+
+    /* --- Spacing Scale ---
+     Using a consistent 8px-base scale makes layouts harmonious. */
+    --space-xs: 0.5rem;
+    /*  8px */
+    --space-sm: 1rem;
+    /* 16px */
+    --space-md: 1.5rem;
+    /* 24px */
+    --space-lg: 2rem;
+    /* 32px */
+    --space-xl: 3rem;
+    /* 48px */
+    --space-2xl: 5rem;
+    /* 80px */
+
+    /* --- Border Radius --- */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 32px;
+    --radius-full: 9999px;
+    /* Makes a perfect pill/circle shape */
+
+    /* --- Shadows --- */
+    --shadow-sm: 0 2px 8px rgba(10, 22, 40, 0.08);
+    --shadow-md: 0 8px 24px rgba(10, 22, 40, 0.12);
+    --shadow-lg: 0 16px 48px rgba(10, 22, 40, 0.18);
+    --shadow-blue: 0 8px 32px rgba(30, 77, 153, 0.25);
+
+    /* --- Transitions ---
+     Used for smooth hover effects. Syntax: property duration easing */
+    --transition-fast: all 0.2s ease;
+    --transition-normal: all 0.35s ease;
+    --transition-slow: all 0.6s ease;
+
+    /* --- Navbar height --- */
+    --nav-height: 72px;
+}
+
+
+/* ================================================================
+   2. CSS RESET & BASE STYLES
+   Browsers have different default styles. We "reset" them
+   so our design looks consistent everywhere.
+================================================================ */
+
+/* The * selector applies to EVERY element on the page */
+*,
+*::before,
+*::after {
+    /* box-sizing: border-box means padding and border are INCLUDED
+     in the element's total width/height. Much easier to work with. */
+    box-sizing: border-box;
+    /* Remove all default margins and padding */
+    margin: 0;
+    padding: 0;
+}
+
+/* html element — controls root font size */
+html {
+    font-size: 16px;
+    /* 1rem = 16px */
+    /* scroll-behavior: smooth makes anchor links (#section) animate smoothly */
+    scroll-behavior: smooth;
+    /* scroll-padding-top accounts for the fixed navbar height
+     so sections don't hide under the navbar when you click a link */
+    scroll-padding-top: var(--nav-height);
+}
+
+/* body — the main container for all visible content */
+body {
+    font-family: var(--font-body);
+    color: var(--blue-900);
+    background-color: var(--white);
+    /* line-height: how much vertical space between lines of text */
+    line-height: 1.6;
+    /* Prevents horizontal scroll caused by elements wider than the viewport */
+    overflow-x: hidden;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+/* Remove underline from all links by default */
+a {
+    text-decoration: none;
+    color: inherit;
+    /* inherit = take the color from the parent element */
+}
+
+/* Make images responsive by default */
+img {
+    max-width: 100%;
+    /* Image won't overflow its container */
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* Removes the small gap below images */
+}
+
+/* Ensure buttons inherit font from body (browsers don't do this by default) */
+button {
+    font-family: var(--font-body);
+    cursor: pointer;
+    /* Shows the hand cursor on hover */
+    border: none;
+    background: none;
+}
+
+
+/* ================================================================
+   3. NAVBAR
+   Fixed at the top so it stays visible when you scroll.
+================================================================ */
+.navbar {
+    /* position: fixed — element stays fixed relative to the viewport */
+    position: fixed;
+    /* top: 0 — stick to the very top edge */
+    top: 0;
+    /* left: 0 + width: 100% — span the full width of the screen */
+    left: 0;
+    width: 100%;
+    height: var(--nav-height);
+
+    /* Flexbox makes children line up in a row and centers them vertically */
+    display: flex;
+    align-items: center;
+    /* Vertical centering */
+    justify-content: space-between;
+    /* Logo on left, links on right */
+
+    /* Horizontal padding gives breathing room on left and right */
+    padding: 0 var(--space-lg);
+
+    /* Glass morphism effect:
+     - Semi-transparent white background
+     - backdrop-filter: blur() blurs what's behind the element */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    /* Safari compatibility */
+
+    box-shadow: var(--shadow-sm);
+
+    /* z-index controls stacking order. Higher number = on top.
+     999 makes sure the navbar is above everything else. */
+    z-index: 999;
+
+    /* Smooth transition for the scroll-triggered background change */
+    transition: var(--transition-normal);
+}
+
+/* When the navbar gets the "scrolled" class (added by JavaScript),
+   make the background more solid */
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-md);
+}
+
+/* --- Brand / Logo area --- */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    /* gap adds space between flex children */
+}
+
+.nav-logo {
+    width: 40px;
+    height: 40px;
+    /* object-fit: cover — fill the box without stretching the image */
+    object-fit: cover;
+    border-radius: var(--radius-full);
+    /* Makes the logo circular */
+    border: 2px solid var(--blue-300);
+}
+
+.nav-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--blue-700);
+    /* Gradient text effect */
+    background: linear-gradient(135deg, var(--blue-700), var(--blue-400));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- Navigation links list --- */
+.nav-links {
+    display: flex;
+    /* Line up links horizontally */
+    align-items: center;
+    gap: var(--space-xs);
+    /* Space between each link */
+}
+
+/* Each individual nav link */
+.nav-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--blue-800);
+    padding: 6px 14px;
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
+    position: relative;
+    /* Needed for the ::after underline trick */
+}
+
+/* Underline animation on hover using ::after pseudo-element */
+.nav-link::after {
+    content: '';
+    /* Pseudo-elements need content (can be empty) */
+    position: absolute;
+    bottom: 2px;
+    left: 14px;
+    right: 14px;
+    height: 2px;
+    background: var(--blue-400);
+    /* scaleX(0) — invisible (scaled to 0 width) */
+    transform: scaleX(0);
+    transform-origin: center;
+    /* Scale from the center outward */
+    transition: transform 0.25s ease;
+}
+
+/* On hover: scale the underline to full width */
+.nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+.nav-link:hover {
+    color: var(--blue-400);
+}
+
+
+/* ================================================================
+   4. HAMBURGER MENU (MOBILE)
+   Hidden on desktop; shown on small screens via media query.
+================================================================ */
+.hamburger {
+    /* Hidden by default (desktop view). 
+     Media query at the bottom shows it on mobile. */
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 4px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+    z-index: 1000;
+}
+
+.hamburger:hover {
+    background: var(--blue-50);
+}
+
+/* Each bar of the hamburger icon */
+.bar {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--blue-700);
+    border-radius: var(--radius-full);
+    transition: var(--transition-normal);
+    /* transform-origin: controls the pivot point for rotations */
+    transform-origin: center;
+}
+
+/* --- Hamburger Animation (when menu is open) ---
+   JavaScript adds class="open" to the hamburger button.
+   These CSS rules rotate bars 1 & 3 to form an "X" shape,
+   and hide the middle bar. */
+
+/* Rotate top bar 45° (forms one diagonal of the X) */
+.hamburger.open .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+    /* translateY(7px) moves it down to align with the middle */
+}
+
+/* Hide the middle bar */
+.hamburger.open .bar:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+/* Rotate bottom bar -45° (forms the other diagonal of the X) */
+.hamburger.open .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ================================================================
+   5. HERO SECTION
+   The full-screen banner at the top with background image + overlay.
+================================================================ */
+.hero {
+    /* min-height: 100vh = at least the full viewport height */
+    min-height: 100vh;
+    /* Padding top = navbar height (so content starts below navbar) */
+    padding-top: var(--nav-height);
+
+    /* Position relative allows absolute children to be positioned
+     relative to this section (used for the overlay and content) */
+    position: relative;
+
+    /* Background image setup */
+    background-image: url('https://t3.ftcdn.net/jpg/00/91/06/84/360_F_91068484_GRzwjXUjQN25JHz5VLBfzsnSUXkwDMGJ.jpg');
+    background-size: cover;
+    /* Scale image to cover entire area */
+    background-position: center;
+    /* Center the image */
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* Parallax scrolling effect! */
+
+    display: flex;
+    flex-direction: column;
+    /* Stack children vertically */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Semi-transparent blue overlay on top of the background image.
+   Makes text readable. position:absolute + inset:0 covers the full area. */
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    /* shorthand for top:0, right:0, bottom:0, left:0 */
+    background: linear-gradient(135deg,
+            rgba(7, 17, 40, 0.78) 0%,
+            /* Dark navy, 78% opacity */
+            rgba(15, 45, 99, 0.65) 50%,
+            /* Deep blue, 65% opacity */
+            rgba(7, 17, 40, 0.80) 100%);
+    /* z-index: 0 — overlay sits above background but below content */
+    z-index: 0;
+}
+
+/* The text content on top of the overlay */
+.hero-content {
+    position: relative;
+    /* Stacks above the overlay (z-index context) */
+    z-index: 1;
+    text-align: center;
+    padding: var(--space-xl) var(--space-lg);
+    max-width: 800px;
+    /* Limit text width for readability */
+    animation: fadeSlideUp 0.9s ease both;
+    /* Entrance animation */
+}
+
+/* Small text above the main title */
+.hero-eyebrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    /* Spread letters apart for style */
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: var(--space-sm);
+}
+
+/* Main headline */
+.hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    /* clamp(min, preferred, max) — fluid font size that scales with viewport */
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+}
+
+/* The highlighted part of the title */
+.hero-title-accent {
+    color: var(--blue-300);
+    font-style: italic;
+}
+
+/* Supporting subtitle */
+.hero-sub {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.80);
+    max-width: 550px;
+    margin: 0 auto var(--space-lg);
+    line-height: 1.7;
+}
+
+/* Container for the two buttons */
+.hero-cta-group {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    /* Wrap buttons to next line on very small screens */
+}
+
+
+/* ================================================================
+   BUTTON STYLES (reusable across the page)
+================================================================ */
+
+/* Base button style — shared by all buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 32px;
+    border-radius: var(--radius-full);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    transition: var(--transition-normal);
+    /* transform: used for hover "lift" effect */
+}
+
+/* Primary button — solid blue */
+.btn-primary {
+    background: var(--blue-400);
+    color: var(--white);
+    box-shadow: var(--shadow-blue);
+}
+
+.btn-primary:hover {
+    background: var(--blue-300);
+    /* translateY(-3px) moves button UP 3px — a "lift" effect */
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(30, 77, 153, 0.40);
+}
+
+/* Outline button — transparent with white border */
+.btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255, 255, 255, 0.60);
+}
+
+.btn-outline:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--white);
+    transform: translateY(-3px);
+}
+
+/* Scroll-down indicator arrow */
+.scroll-indicator {
+    position: absolute;
+    bottom: var(--space-lg);
+    left: 50%;
+    transform: translateX(-50%);
+    /* Center horizontally */
+    z-index: 1;
+}
+
+.scroll-arrow {
+    display: block;
+    font-size: 1.8rem;
+    color: rgba(255, 255, 255, 0.70);
+    /* animation: bounceDown runs a looping up-down animation */
+    animation: bounceDown 2s ease-in-out infinite;
+}
+
+
+/* ================================================================
+   6. VALUES / SLIDER SECTION
+================================================================ */
+.values-section {
+    padding: var(--space-2xl) var(--space-lg);
+    background: var(--blue-900);
+    /* Dark navy background */
+    position: relative;
+    overflow: hidden;
+    /* Hides decorative background elements that overflow */
+}
+
+/* Decorative background circle (pure CSS, no image needed) */
+.values-section::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    /* Circle */
+    background: radial-gradient(circle, rgba(37, 99, 196, 0.15), transparent 70%);
+    top: -200px;
+    right: -200px;
+    pointer-events: none;
+    /* Mouse clicks pass through this element */
+}
+
+/* --- Section Header (shared style used in multiple sections) --- */
+.section-header {
+    text-align: center;
+    margin-bottom: var(--space-xl);
+}
+
+/* The small coloured tag above section titles */
+.section-tag {
+    display: inline-block;
+    background: rgba(37, 99, 196, 0.2);
+    color: var(--blue-300);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    margin-bottom: var(--space-sm);
+}
+
+/* Override section-tag colors for light sections */
+.services-section .section-tag,
+.info-section .section-tag {
+    background: var(--blue-50);
+    color: var(--blue-600);
+    border-color: var(--blue-100);
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.2;
+}
+
+/* Override title color for light sections */
+.services-section .section-title,
+.info-section .section-title {
+    color: var(--blue-900);
+}
+
+.section-desc {
+    font-size: 1rem;
+    color: var(--gray-400);
+    margin-top: var(--space-xs);
+}
+
+/* --- Slider --- */
+.slider-container {
+    /* relative positioning lets us position the arrow buttons absolutely */
+    position: relative;
+    max-width: 750px;
+    margin: 0 auto;
+    /* Center the slider horizontally */
+}
+
+/* The "window" that shows only one slide at a time */
+.slider-container {
+    overflow: hidden;
+    /* IMPORTANT: hides slides that are off-screen */
+    border-radius: var(--radius-xl);
+}
+
+/* The track that holds all slides side by side */
+.slider-track {
+    display: flex;
+    /* All slides in a horizontal row */
+    /* transition makes the sliding animation smooth */
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* cubic-bezier = custom easing for a more natural feel */
+}
+
+/* Each individual slide takes up 100% of the container width */
+.slide {
+    /* flex: 0 0 100% means:
+     - don't grow, don't shrink, always be exactly 100% wide */
+    flex: 0 0 100%;
+    min-height: 280px;
+}
+
+/* Inner content of each slide */
+.slide-inner {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl) var(--space-2xl);
+    text-align: center;
+    background: linear-gradient(135deg, var(--blue-800), var(--blue-700));
+    border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+/* The big decorative quotation mark */
+.slide-quote {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--blue-400);
+    opacity: 0.5;
+    margin-bottom: -1rem;
+    /* Negative margin pulls the text up */
+}
+
+/* The quote text itself */
+.slide-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.1rem, 3vw, 1.6rem);
+    font-weight: 600;
+    color: var(--white);
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+}
+
+/* The emoji icon at the bottom of each slide */
+.slide-icon {
+    font-size: 2rem;
+    opacity: 0.85;
+}
+
+/* --- Slider Arrow Buttons --- */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    /* translateY(-50%) centers button vertically relative to slider */
+    transform: translateY(-50%);
+
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--white);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: var(--transition-fast);
+    z-index: 2;
+    /* Above the slides */
+}
+
+.slider-btn:hover {
+    background: var(--blue-400);
+    border-color: var(--blue-400);
+    transform: translateY(-50%) scale(1.1);
+}
+
+/* Position the prev button on the left */
+.slider-prev {
+    left: -22px;
+}
+
+/* Position the next button on the right */
+.slider-next {
+    right: -22px;
+}
+
+/* --- Dot Indicators --- */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: var(--space-lg);
+}
+
+/* Each dot (created by JavaScript) */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.25);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+/* The active dot (current slide) */
+.dot.active {
+    background: var(--blue-300);
+    /* Expand the active dot into a pill shape */
+    width: 24px;
+    border-radius: var(--radius-full);
+}
+
+
+/* ================================================================
+   7. SERVICES SECTION
+   The category cards generated by JavaScript.
+================================================================ */
+.services-section {
+    padding: var(--space-2xl) var(--space-lg);
+    background: var(--off-white);
+    /* Slightly blue-tinted white */
+}
+
+/* CSS Grid layout for the cards */
+.services-grid {
+    display: grid;
+    /* auto-fill: create as many columns as fit.
+     minmax(260px, 1fr): each column is minimum 260px, maximum 1 fraction.
+     This automatically creates a responsive grid without media queries! */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-md);
+    /* Space between grid items */
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Each service card (created and appended by JavaScript) */
+.service-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    border: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: var(--transition-normal);
+
+    /* Flexbox for vertical layout inside the card */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+
+    /* For the hover slide-up animation trick */
+    position: relative;
+    overflow: hidden;
+}
+
+/* The animated color strip at the top of each card (appears on hover) */
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blue-400), var(--blue-300));
+    /* Start hidden off-screen above the card */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+}
+
+/* Show the color strip on hover */
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+/* Lift the card on hover */
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--blue-100);
+}
+
+/* The emoji icon on each card */
+.card-icon {
+    font-size: 2.4rem;
+    /* Small circle background behind the icon */
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--blue-50);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-xs);
+}
+
+/* Card title */
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--blue-900);
+}
+
+/* Card description */
+.card-desc {
+    font-size: 0.9rem;
+    color: var(--gray-600);
+    line-height: 1.6;
+    flex: 1;
+    /* Pushes the link to the bottom */
+}
+
+/* "Visit →" link at the bottom of each card */
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--blue-500);
+    transition: var(--transition-fast);
+}
+
+.card-link:hover {
+    color: var(--blue-300);
+    gap: 10px;
+    /* Widen gap — arrow appears to "move right" */
+}
+
+
+/* ================================================================
+   8. INFO / ABOUT SECTION
+================================================================ */
+.info-section {
+    padding: var(--space-2xl) var(--space-lg);
+    background: var(--white);
+}
+
+/* Two-column layout: text on left, image on right */
+.info-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Two equal columns */
+    gap: var(--space-2xl);
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.info-text p {
+    font-size: 1rem;
+    color: var(--gray-600);
+    line-height: 1.75;
+}
+
+.info-text strong {
+    color: var(--blue-700);
+}
+
+/* Stats row */
+.info-stats {
+    display: flex;
+    gap: var(--space-lg);
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--gray-200);
+}
+
+/* Individual stat item */
+.stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 900;
+    /* Gradient text */
+    background: linear-gradient(135deg, var(--blue-600), var(--blue-300));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    color: var(--gray-400);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Right column image */
+.info-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-img {
+    width: 320px;
+    height: 320px;
+    object-fit: contain;
+    /* Show whole image without cropping */
+    border-radius: var(--radius-xl);
+    /* Fancy layered box shadow for depth */
+    box-shadow:
+        0 0 0 8px var(--blue-50),
+        0 0 0 16px var(--blue-100),
+        var(--shadow-lg);
+    /* Slow rotation animation — very subtle */
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+
+/* ================================================================
+   9. FOOTER
+================================================================ */
+.footer {
+    background: var(--blue-900);
+    color: rgba(255, 255, 255, 0.8);
+    padding: var(--space-2xl) var(--space-lg) 0;
+}
+
+/* Three-column footer layout */
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-xl);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding-bottom: var(--space-xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.footer-logo {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--blue-400);
+}
+
+.footer-tagline {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-style: italic;
+    max-width: 260px;
+}
+
+.footer-heading {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--blue-300);
+    margin-bottom: var(--space-sm);
+}
+
+/* Footer link items */
+.footer-links ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.footer-links a {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.65);
+    transition: var(--transition-fast);
+}
+
+.footer-links a:hover {
+    color: var(--white);
+    padding-left: 4px;
+    /* Subtle indent on hover */
+}
+
+/* Copyright strip at the very bottom */
+.footer-bottom {
+    text-align: center;
+    padding: var(--space-md);
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+
+/* ================================================================
+   10. UTILITY CLASSES
+   Small reusable classes you can add to any element.
+================================================================ */
+
+/* Visually hidden — for screen readers only (accessibility) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+
+/* ================================================================
+   11. ANIMATIONS & KEYFRAMES
+   @keyframes defines the steps of an animation.
+   Usage: animation: animationName duration easing;
+================================================================ */
+
+/* Fade + slide up — used for hero content entrance */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Bouncing arrow in the hero section */
+@keyframes bounceDown {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* Gentle floating animation for the info image */
+@keyframes gentleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+/* Fade in for service cards (added via JavaScript) */
+@keyframes cardIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Class applied by JavaScript to trigger card animation */
+.card-animate {
+    animation: cardIn 0.5s ease both;
+}
+
+
+/* ================================================================
+   12. MEDIA QUERIES — RESPONSIVE DESIGN
+   @media rules apply styles only at certain screen sizes.
+   We use a "mobile-first" approach, adjusting larger layouts
+   with min-width queries.
+   
+   Breakpoints:
+   - max-width: 900px  → Tablet
+   - max-width: 640px  → Mobile
+================================================================ */
+
+/* ---- TABLET (screens 900px or narrower) ---- */
+@media (max-width: 900px) {
+
+    /* Info section: stack columns vertically on tablet */
+    .info-inner {
+        grid-template-columns: 1fr;
+        /* Single column */
+        text-align: center;
+    }
+
+    .info-image {
+        order: -1;
+        /* Move image to the top */
+    }
+
+    .info-stats {
+        justify-content: center;
+    }
+
+    /* Footer: stack columns vertically */
+    .footer-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+
+    /* Show slider arrows inside the container on smaller screens */
+    .slider-prev {
+        left: 8px;
+    }
+
+    .slider-next {
+        right: 8px;
+    }
+}
+
+
+/* ---- MOBILE (screens 640px or narrower) ---- */
+@media (max-width: 640px) {
+
+    /* --- Mobile Navigation ---
+     Hide the desktop nav links and show the hamburger button */
+
+    /* Show hamburger button */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Transform the nav-links into a full-screen dropdown menu */
+    .nav-links {
+        /* Start hidden off the top of the screen */
+        position: fixed;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        /* By default: full height but pushed offscreen via translateY */
+        height: calc(100vh - var(--nav-height));
+        flex-direction: column;
+        /* Stack links vertically */
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: var(--space-xl);
+        gap: var(--space-sm);
+        background: rgba(10, 22, 40, 0.97);
+        backdrop-filter: blur(12px);
+        z-index: 998;
+        /* HIDDEN STATE: push menu up off-screen */
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        /* Can't click when hidden */
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    /* OPEN STATE: JavaScript adds class "open" to nav-links */
+    .nav-links.open {
+        transform: translateY(0);
+        /* Slide down into view */
+        opacity: 1;
+        pointer-events: all;
+        /* Re-enable clicking */
+    }
+
+    /* Larger links inside the mobile menu */
+    .nav-link {
+        font-size: 1.2rem;
+        color: var(--white);
+        padding: 12px 24px;
+    }
+
+    /* --- Hero adjustments for mobile --- */
+    .hero-cta-group {
+        flex-direction: column;
+        align-items: center;
+    }
+
+
+    .hero {
+        background-attachment: scroll;
+    }
+
+    /* --- Info image smaller on mobile --- */
+    .info-img {
+        width: 220px;
+        height: 220px;
+    }
+
+    /* --- Footer stats: smaller gap on mobile --- */
+    .info-stats {
+        gap: var(--space-md);
+    }
+}
